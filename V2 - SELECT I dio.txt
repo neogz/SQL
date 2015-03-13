@@ -1,0 +1,99 @@
+
+/*  Listing 1
+	Prikazati podatke sa a Id, prezimenom, imenom i titulom kupca
+*/
+USE NORTHWND
+
+SELECT EmployeeID, LastName, FirstName, Title
+FROM Employees
+
+/*	Listing 2
+	Prikazati podatke sa a Id, prezimenom, imenom i titulom kupca
+	Ali samo onog gdje ID ima vrijednost 9
+*/
+USE NORTHWND
+
+SELECT EmployeeID, LastName, FirstName, Title
+FROM Employees
+WHERE EmployeeID = 9
+
+/*	Listing 3
+	Napisati upit koji prikazuje prezime, grad i državu zaposlenika iz UK
+*/
+USE NORTHWND
+
+SELECT LastName, FirstName, City, Country
+FROM Employees
+WHERE Country = 'UK'
+
+/*	Listing 4
+	Potrebno je prikazati podatke o naružbama koje su napravljene prije 08.01.1996.
+	Iznaz treba da sadrži broj narudžbe, broj kupca i datum
+	
+*/
+USE NORTHWND
+
+SELECT OrderID, CustomerID, OrderDate
+FROM Orders
+WHERE OrderDate < '08.01.1996'
+
+
+/*	Listing 5
+	Prikazati ime kompanije kupaca i to samo onih koji u svome imenu 
+	imaju rijeè "Restauran"
+*/
+USE NORTHWND
+
+SELECT CompanyName
+FROM Customers
+WHERE CompanyName LIKE '%Restaurant%'
+
+/*	Listing 6
+	Prikazati listu proizovda èije ime poèinje sa slovom t ili je identifikator proizvoda 46.
+	Takoðe, lista treba da sadrži one proizvode èija je cijena po komadu veæa od 16
+*/
+USE NORTHWND
+
+SELECT	ProductID, ProductName, SupplierID, UnitPrice
+FROM	Products
+WHERE	(ProductName LIKE 'T%' OR ProductID = 46) AND (UnitPrice > 16.00)
+
+/*	Listing 7 i 8
+	Napisati upit koji prikazuje proizvode, èija je cijena po komadu izmeðu 10 i 20.
+	Upit napisati koristeæi BETWEEN i logièke operatore.
+*/
+USE NORTHWND
+SELECT ProductName, UnitPrice
+FROM Products
+WHERE UnitPrice BETWEEN 10 AND 20
+
+USE NORTHWND
+SELECT ProductName, UnitPrice
+FROM Products
+WHERE UnitPrice >= 10 AND UnitPrice <= 20
+
+/*	Listing 9 i 10
+	Prikazati samo one dobavljaèe koji su iz Japana ili Italije. 
+	Lista treba da sadrži ime kompanije i državu. 
+	Upit napisati na dva naèina: koristeæi IN i logièke operatore.
+*/
+USE NORTHWND
+SELECT CompanyName, Country
+FROM Suppliers
+WHERE Country = 'Japan' OR Country = 'Italy'
+
+
+USE NORTHWND
+SELECT CompanyName, Country
+FROM Suppliers
+WHERE Country IN ( 'Japan', 'Italy')
+
+
+/*	Listing 11
+	Prikazati samo one dobavljaèe koji nemaju unesen broj FAX-a
+*/
+USE NORTHWND
+
+SELECT CompanyName, Fax
+FROM Suppliers
+WHERE Fax IS NULL
